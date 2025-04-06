@@ -1,13 +1,14 @@
 # interface
 import hashlib
+
 from flask import Flask, request, jsonify
-from sqlalchemy import create_engine, Table, Column, Integer, String, JSON, text
-from sqlalchemy.dialects.mysql import json
+from sqlalchemy import create_engine, Table, text
 from sqlalchemy.orm import sessionmaker, scoped_session, declarative_base
 
 app = Flask(__name__)
 
-engine = create_engine('mysql+pymysql://root:123456@localhost/testforfun', echo=True)
+# engine = create_engine('mysql+mysqlconnectorn://root:@localhost/testforfun', echo=True)
+engine = create_engine('mysql+pymysql://root:@localhost/testforfun', echo=True)
 session = sessionmaker(engine)
 db_session = scoped_session(session)
 # get Base

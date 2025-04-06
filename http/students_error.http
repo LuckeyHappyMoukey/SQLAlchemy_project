@@ -1,0 +1,8 @@
+### 添加学生（缺少字段）
+POST http://127.0.0.1:5000/students
+Content-Type: application/json
+
+{
+    "name": "Eve",
+    "gender": "F"
+}

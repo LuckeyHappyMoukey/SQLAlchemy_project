@@ -1,0 +1,3 @@
+### 查询身高大于等于160且年龄小于等于21的学生
+GET http://127.0.0.1:5000/students/query?height=160&age=21
+Accept: application/json

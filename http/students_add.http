@@ -1,0 +1,10 @@
+### 添加学生
+POST http://127.0.0.1:5000/students
+Content-Type: application/json
+
+{
+    "name": "Alice",
+    "gender": "F",
+    "height": 165,
+    "age": 20
+}

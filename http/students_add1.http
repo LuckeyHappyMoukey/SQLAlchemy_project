@@ -1,0 +1,32 @@
+### 添加学生 Bob
+POST http://127.0.0.1:5000/students
+Content-Type: application/json
+
+{
+    "name": "Bob",
+    "gender": "M",
+    "height": 170,
+    "age": 22
+}
+
+### 添加学生 Charlie
+POST http://127.0.0.1:5000/students
+Content-Type: application/json
+
+{
+    "name": "Charlie",
+    "gender": "M",
+    "height": 155,
+    "age": 19
+}
+
+### 添加学生 Diana
+POST http://127.0.0.1:5000/students
+Content-Type: application/json
+
+{
+    "name": "Diana",
+    "gender": "F",
+    "height": 160,
+    "age": 21
+}
