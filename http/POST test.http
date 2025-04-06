@@ -1,0 +1,7 @@
+POST http://localhost:5000/mysql
+Content-Type: application/json
+
+{
+    "username": "小熊喵L",
+    "password": "123456"
+}
