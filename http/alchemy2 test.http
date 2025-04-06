@@ -1,0 +1,11 @@
+POST http://localhost:5000/
+Content-Type: application/json
+
+{
+    "username": "ttsstts",
+    "password": "123456",
+    "nickname": "ttstest",
+    "picture": "323656.jpg"
+
+}
+
