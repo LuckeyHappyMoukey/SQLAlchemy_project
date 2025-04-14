@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ table_name }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 16px;
+            text-align: left;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+        .table-container td {
+            word-wrap: break-word; /* 允许长单词或URL地址换行到下一行 */
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label, input, select, button {
+            margin: 5px 0;
+            display: block;
+        }
+        .error {
+            color: red;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ table_name }}</h1>
+
+    {% if error %}
+        <div class="error">{{ error }}</div>
+    {% endif %}
+
+    <form method="post">
+        <label for="column1">选择列1:</label>
+        <select id="column1" name="column1" required>
+            {% for key in data[0] if data %}
+                <option value="{{ key }}">{{ key }}</option>
+            {% else %}
+                <option value="none">表为空或不存在</option>
+            {% endfor %}
+        </select>
+
+        <label for="operator1">选择操作符1:</label>
+        <select id="operator1" name="operator1" required>
+            <option value="eq">等于</option>
+            <option value="gt">大于</option>
+            <option value="lt">小于</option>
+            <option value="ge">大于等于</option>
+            <option value="le">小于等于</option>
+            <option value="like">模糊匹配（区分大小写）</option>
+        </select>
+
+        <label for="value1">输入值1:</label>
+        <input type="text" id="value1" name="value1" required>
+
+        <label for="column2">选择列2（可选）:</label>
+        <select id="column2" name="column2">
+            <option value="">无</option>
+            {% for key in data[0] if data %}
+                <option value="{{ key }}">{{ key }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="operator2">选择操作符2（可选）:</label>
+        <select id="operator2" name="operator2">
+            <option value="">无</option>
+            <option value="eq">等于</option>
+            <option value="gt">大于</option>
+            <option value="lt">小于</option>
+            <option value="ge">大于等于</option>
+            <option value="le">小于等于</option>
+            <option value="like">模糊匹配（区分大小写）</option>
+        </select>
+
+        <label for="value2">输入值2（可选）:</label>
+        <input type="text" id="value2" name="value2">
+
+        <button type="submit">提交</button>
+    </form>
+
+    <div class="table-container">
+        <table border="1">
+            <thead>
+                <tr>
+                    {% if data %}
+                        {% for key in data[0] %}
+                            <th>{{ key }}</th>
+                        {% endfor %}
+                    {% else %}
+                        <th>表为空或不存在</th>
+                    {% endif %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in data %}
+                    <tr>
+                        {% for value in row.values() %}
+                            <td>{{ value }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

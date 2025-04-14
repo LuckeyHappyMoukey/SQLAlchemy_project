@@ -1,0 +1,60 @@
+<!--index.html-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <form method="post">
+        <label for="table_name_select">选择表名:</label>
+        <select id="table_name_select" name="table_name_select" required>
+            <option value="students">students</option>
+            <option value="users">users</option>
+            <option value="">...</option>
+        </select>
+<!--    value 设置为第一个未选择时的初始值    -->
+        <input type="text" value="students" id="table_name_input" name="table_name" class="hidden" placeholder="输入表名" tabindex="-1">
+        <button type="submit">提交</button>
+    </form>
+
+    <script>
+        document.getElementById('table_name_select').addEventListener('change', function() {
+            var selectValue = this.value;
+            // 绑定者
+            var inputField = document.getElementById('table_name_input');
+            // 修改者
+            inputField.value = document.getElementById('table_name_select').value;
+
+            if (selectValue === '') {
+                inputField.classList.remove('hidden');
+                inputField.required = true;
+
+                this.required = false;
+                inputField.focus(); // 自动聚焦到输入框
+                // 模拟按下 Tab 键 聚焦已由上面提供的 focus() 方法完成
+                // var event = new KeyboardEvent('keydown', {
+                //     key: 'Tab',
+                //     code: 'Tab',
+                //     keyCode: 9,
+                //     charCode: 9,
+                //     which: 9,
+                //     shiftKey: false,
+                //     ctrlKey: false,
+                //     metaKey: false
+                // });
+                inputField.dispatchEvent(event);
+            } else {
+                inputField.classList.add('hidden');
+                inputField.required = false;
+                this.required = true;
+            }
+        });
+    </script>
+</body>
+</html>
